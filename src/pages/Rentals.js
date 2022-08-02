@@ -87,7 +87,7 @@ const Rentals = () => {
                       <div className="bottomButton">
                         <Button text="Stay Here"/>
                         <div>
-                          <Icon fill="#000" size={10} svg="matic"/> {e.attributes.pricePerDay}/ Day
+                          <Icon fill="#000" size={15} svg="matic"/> {e.attributes.pricePerDay}/ Day
                         </div>
                       </div>
                     </div>
