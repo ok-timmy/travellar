@@ -36,7 +36,7 @@
 
 .rentalsContent {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     height: calc(100vh - 135px);
 }
 
@@ -60,7 +60,7 @@
     animation: mymove 3s;
     border-radius: 20px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 
@@ -99,7 +99,7 @@
 
 .price {
     display:flex;
-    justify-content: end;
+    justify-content: flex-end;
     gap:5px;
     color:#808080;
     font-size: 12px;

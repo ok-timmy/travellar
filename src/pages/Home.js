@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import bg from "../images/frontpagebg.png";
-import logo from "../images/airbnb.png";
+import bg from "../images/frontpagebg2.png";
+import logo from "../images/airbnbRed.png";
 import { ConnectButton, DatePicker, Icon, Input, Select, Button } from "web3uikit";
 import countries from "../assets/countries.json";
 
@@ -46,26 +46,6 @@ const Home = () => {
                   label: country.name
                 }
                 })
-                // {
-                //   id: "vi",
-                //   label: "Victoria Island"
-                // },
-                // {
-                //   id: "ny",
-                //   label: " New York",
-                // },
-                // {
-                //   id: "lon",
-                //   label: "London",
-                // },
-                // {
-                //   id: "db",
-                //   label: "Dubai",
-                // },
-                // {
-                //   id: "la",
-                //   label: " Los Angeles",
-                // },
               }
             />
           </div>
@@ -99,8 +79,8 @@ const Home = () => {
             to={"/rentals"}
             state={{ destination, checkIn, checkOut, guests }}
           >
-            <div className="searchButton">
-              <Icon svg="search" fill="#fff" size={24} />
+            <div className="searchButton"style={{marginRight:"0.2rem"}}>
+              <Icon svg="search" fill="#fff" size={40}/>
             </div>
           </Link>
         </div>

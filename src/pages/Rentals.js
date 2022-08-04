@@ -21,12 +21,12 @@ const Rentals = () => {
     const fetchRentals = async () => {
       const Rentals = await Moralis.Object.extend("rentalsTable");
       const query = new Moralis.Query(Rentals);
-      console.log(query);
+      // console.log(query);
       query.equalTo("city", destination);
       query.greaterThanOrEqualTo("maxGuests_decimal", guests);
       const result = await query.find();
       // console.log(destination);
-      console.log(result);
+      // console.log(result);
 
       let cords = [];
       result.forEach((e) => {
@@ -39,6 +39,7 @@ const Rentals = () => {
     fetchRentals();
   }, [searchFilters]);
 
+  //Handle Success Notification
   const handleSuccess = () => {
     dispatch({
       type: "success",
@@ -48,6 +49,7 @@ const Rentals = () => {
     });
   };
 
+  //Handle Error Notification
   const handleError = (msg) => {
     dispatch({
       type: "error",
@@ -58,6 +60,7 @@ const Rentals = () => {
     // console.log(`${msg}`);
   };
 
+  //Handle No Account Notification
   const handleNoAccount = () => {
     dispatch({
       type: "error",

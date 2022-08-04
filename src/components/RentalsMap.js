@@ -18,7 +18,7 @@ function RentalsMap({ location, google, setHighlight }) {
     <>
       {center && (
         <Map
-          google={google}
+        google={google}
           containerStyle={{
             width: "50vw",
             height: "calc(100vh -135px)",
@@ -38,5 +38,5 @@ function RentalsMap({ location, google, setHighlight }) {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "",
+  apiKey: "AIzaSyAhLGd--WJUmpOA_TTkLU0anManjRrCTG8",
 })(RentalsMap);

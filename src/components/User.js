@@ -14,7 +14,7 @@ function User({account}) {
       // console.log(query);
       query.equalTo("booker", account);
       const result = await query.find();
-      console.log(result);
+      // console.log(result);
 
       setUserRentals(result);
     }
