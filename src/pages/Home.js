@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 import bg from "../images/frontpagebg.png";
 import logo from "../images/airbnb.png";
 import { ConnectButton, DatePicker, Icon, Input, Select, Button } from "web3uikit";
+import countries from "../assets/countries.json";
 
 const Home = () => {
   const [checkIn, setCheckIn] = useState(new Date());
   const [checkOut, setCheckOut] = useState(new Date());
-  const [destination, setDestination] = useState("New York");
+  const [destination, setDestination] = useState("Victoria Island");
   const [guests, setGuests] = useState(2);
+
+  // console.log(countries);
 
   return (
     <>
@@ -36,24 +39,34 @@ const Home = () => {
             <Select
               defaultOptionIndex={0}
               onChange={(data) => setDestination(data.label)}
-              options={[
-                {
-                  id: "ny",
-                  label: " New York",
-                },
-                {
-                  id: "lon",
-                  label: "London",
-                },
-                {
-                  id: "db",
-                  label: "Dubai",
-                },
-                {
-                  id: "la",
-                  label: " Los Angeles",
-                },
-              ]}
+              options={
+                countries.map((country)=> {
+                return {
+                  id: country.code,
+                  label: country.name
+                }
+                })
+                // {
+                //   id: "vi",
+                //   label: "Victoria Island"
+                // },
+                // {
+                //   id: "ny",
+                //   label: " New York",
+                // },
+                // {
+                //   id: "lon",
+                //   label: "London",
+                // },
+                // {
+                //   id: "db",
+                //   label: "Dubai",
+                // },
+                // {
+                //   id: "la",
+                //   label: " Los Angeles",
+                // },
+              }
             />
           </div>
           <div className="vl" />

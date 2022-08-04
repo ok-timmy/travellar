@@ -29,7 +29,7 @@ function RentalsMap({ location, google, setHighlight }) {
           disableDefaultUI={true}
         >
           {location.map((coords, i) => {
-            return <Marker position={coords} onClick={() => setHighlight(i)} />;
+            return <Marker key={i} position={coords} onClick={() => setHighlight(i)} />;
           })}
         </Map>
       )}
