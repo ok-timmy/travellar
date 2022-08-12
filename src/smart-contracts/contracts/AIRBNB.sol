@@ -15,7 +15,9 @@ contract airbnb {
         string city;
         string lat;
         string long;
-        string unoDescription;
+        string guests;
+        string beds;
+        string rooms;
         string dosDescription;
         string imgUrl;
         uint256 maxGuests;
@@ -30,7 +32,9 @@ contract airbnb {
         string city,
         string lat,
         string long,
-        string unoDescription,
+        string guests,
+        string beds,
+        string rooms,
         string dosDescription,
         string imgUrl,
         uint256 maxGuests,
@@ -56,7 +60,9 @@ contract airbnb {
         string memory city,
         string memory lat,
         string memory long,
-        string memory unoDescription,
+        string memory guests,
+        string memory beds,
+        string memory rooms,
         string memory dosDescription,
         string memory imgUrl,
         uint256 maxGuests,
@@ -72,7 +78,9 @@ contract airbnb {
         newRental.city = city;
         newRental.lat = lat;
         newRental.long = long;
-        newRental.unoDescription = unoDescription;
+        newRental.guests = guests;
+        newRental.beds = beds;
+        newRental.rooms = rooms;
         newRental.dosDescription = dosDescription;
         newRental.imgUrl = imgUrl;
         newRental.maxGuests = maxGuests;
@@ -86,7 +94,9 @@ contract airbnb {
             city,
             lat,
             long,
-            unoDescription,
+            guests,
+            beds,
+            rooms,
             dosDescription,
             imgUrl,
             maxGuests,

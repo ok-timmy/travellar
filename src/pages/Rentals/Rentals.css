@@ -1,61 +1,43 @@
-.searchReminder {
-    width:400px;
-    border: 1.5px solid rgb(242, 242, 242);
-    border-radius: 100px;
-    height:45px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left:30px;
-    padding-right:5px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.rentals__page {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-.filter {
-    font-size: 14px;
-    font-weight: 500;
-    margin-right: 20px
+.rentals__filter {
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    padding: 1rem 0 2rem; 
+    border-bottom: 1px black solid;
+    position: sticky;
 }
 
-.searchFiltersIcon {
-    background-color: #EB4E5F;
-    padding:7px;
-    border-radius: 50%;
-}
 
-.line {
-    border-top:1px solid rgb(230, 229, 229);
-    margin-bottom: 0px;
+.stays {
+    padding-bottom: 1rem;
+    font-size: 1.3rem;
 }
-
-.line2 {
-    border-top:0.5px solid rgb(230, 230, 230);
-    margin: 30px 0px;
-}
-
 
 .rentalsContent {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* display: flex;
-    justify-content: flex-start; */
-    height: calc(100vh - 135px);
+    height: 100%;
 }
 
 .rentalsContentL {
-    /* width: 50%; */
     padding:30px;
-    height: calc(100vh - 150px);
-    overflow: scroll;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
-.rentalsContentR {
-    width:50%;
-}
 
 .rentalDiv {
+    padding: 1rem 0;
     display: flex;
     justify-content: space-around;
+    cursor: pointer;
 }
 
 .rentalDivH {
