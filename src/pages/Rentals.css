@@ -35,13 +35,15 @@
 
 
 .rentalsContent {
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* display: flex;
+    justify-content: flex-start; */
     height: calc(100vh - 135px);
 }
 
 .rentalsContentL {
-    width: 50%;
+    /* width: 50%; */
     padding:30px;
     height: calc(100vh - 150px);
     overflow: scroll;
