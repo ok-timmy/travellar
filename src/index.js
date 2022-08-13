@@ -6,19 +6,22 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { MoralisProvider } from "react-moralis";
 import { NotificationProvider } from "web3uikit";
+import { FilterProvider } from "./components/Context/ContextWrapper";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MoralisProvider
-      appId="FavTCaEmsyOOViBUKSKwLwQrZmVYM3s0WDAO7JBa"
-      serverUrl="https://iukwfltrdns5.usemoralis.com:2053/server"
-    >
-      <NotificationProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </NotificationProvider>
-    </MoralisProvider>
+    <FilterProvider>
+      <MoralisProvider
+        appId="FavTCaEmsyOOViBUKSKwLwQrZmVYM3s0WDAO7JBa"
+        serverUrl="https://iukwfltrdns5.usemoralis.com:2053/server"
+      >
+        <NotificationProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </NotificationProvider>
+      </MoralisProvider>
+    </FilterProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

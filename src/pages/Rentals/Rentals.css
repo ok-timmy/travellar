@@ -14,10 +14,16 @@
     position: sticky;
 }
 
+.rentalLocation {
+    padding: 0 0  1rem;
+    font-size: 1.1rem;
+}
+
 
 .stays {
     padding-bottom: 1rem;
     font-size: 1.3rem;
+    border-bottom: #808080 2px solid;
 }
 
 .rentalsContent {
@@ -65,7 +71,7 @@
 }
 
 .rentalTitle {
-    font-size: 23px;
+    font-size: 1.75rem;
     margin-bottom: 15px;;
 }
 

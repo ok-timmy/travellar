@@ -1,26 +1,60 @@
 .location__page {
     position: relative;
     width: 100%;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     display: grid;
     grid-template-columns: 2fr 2.5fr;
 }
 
 .location__details{
+    display: grid;
+    grid-template-rows: 2.4fr 1.8fr;
+    height: 100vh;
+}
+
+.location__upper {
+    background-color: #F2F6FF;
+    height: 100;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 2rem;
 }
 
-.location__Name {
-    font-size: 4.2rem;
+.location__lower {
+    padding-left: 2rem;
 }
 
-.location__price {
-    width: 50%;
+.location__Name {
+    font-size: 3.2rem;
+    width: 90%;
+    font-weight: 600;
+}
+
+.location__dosdescription {
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    font-weight: 300;
+    padding: 2rem 1rem 0 0;
+}
+
+.location__location {
+    padding: 0.5rem 0 1rem;
+}
+
+.location__unodescription >span:nth-child(2) {
+    padding-left: 2rem;
+}
+
+.location__synopsis {
+    padding: 0.25rem 0;
+}
+
+.book__section {
+    width: 70%;
     display: flex;
     justify-content: space-between;
+    padding: 0.5rem 0;
 }
 
 .location__images {
@@ -41,7 +75,7 @@
 
 .search__details {
     position: absolute;
-    top: 2rem;
+    top: 1rem;
     width: 100%;
     
 }
