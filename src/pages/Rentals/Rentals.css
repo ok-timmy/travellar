@@ -103,3 +103,23 @@
     color:#808080;
     font-size: 12px;
 }
+
+@media screen and (max-width:600px) {
+    .filters{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .logo {
+        width: 100%;
+        height: 3rem;
+        justify-self: flex-start;
+    }
+}
+
+@media screen and (max-width:1028px) {
+    .rentalsContent {
+        display: block;
+    }
+    
+}

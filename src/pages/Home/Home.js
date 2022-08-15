@@ -1,44 +1,109 @@
 import React from "react";
 import "./Home.css";
-import bg from "../../images/frontpagebg2.png";
-import logo from "../../images/airbnbRed.png";
-import { ConnectButton,  Button } from "web3uikit";
+import lensfix from "../../images/lensfix.jpg";
+import maldives from "../../images/maldives.jpg";
+import santorini from "../../images/santorini.jpg";
+import crypto2 from "../../images/crypto2.png";
+import aeroLogo from "../../images/aero-logo.png";
+import { ConnectButton } from "web3uikit";
 import Filter from "../../components/filter/Filter";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, EffectFade } from "swiper";
+import "swiper/swiper-bundle.css";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   // console.log(countries);
 
   return (
-    <>
-      <div className="container" style={{ backgroundImage: `url(${bg})` }}>
-        <div className="containerGradient"></div>
-      </div>
-      <div className="topBanner">
+    <div className="home__page">
+      <div className="header">
         <div>
-          <img className="logo" src={logo} alt="logo" />
+          <img className="logo" src={aeroLogo} alt="logo" />
         </div>
-        <div className="tabs">
-          <div className="selected">Places to Stay</div>
-          <div>Experiences</div>
-          <div>Online Experiences</div>
-        </div>
+
         <div className="lrContainers">
           <ConnectButton />
         </div>
       </div>
-      <div className="tabContent">
-       
-        <Filter/>
+      <Swiper
+        modules={[Navigation, EffectFade]}
+        navigation
+        effect={"fade"}
+        speed={1500}
+        slidesPerView={1}
+        loop
+        className="my__swiper"
+      >
+        <div className="location__images">
+          <SwiperSlide className="swiper__slide">
+            <img src={maldives} alt="" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper__slide">
+            <img src={lensfix} alt="" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper__slide">
+            <img src={santorini} alt="" />
+          </SwiperSlide>
+        </div>
+      </Swiper>
+
+      <div>
+        <div className="explore__div">
+          <p className="explore__header">Explore Locations</p>
+         <div> <Filter /> </div>
+        </div>
       </div>
 
-      <div className="randomLocation">
-        <div>Feel Adventurous</div>
-        <div className="text">
-          Let us Decide and discover new places to stay, live, work or just relax.
+      <div className="features__div">
+        <div className="feature__div">
+          <i class="bi bi-airplane"></i>
+          <div>
+            <h2>Exclusive Trips</h2>
+            <p>
+              Enjoy Exclusive First Class trips to any destination of your
+              choice
+            </p>
+          </div>
         </div>
-        <Button text="Explore A location" />
+        <div className="feature__div">
+          <i class="bi bi-clock"></i>
+          <div>
+            <h2>Fast Bookings</h2>
+            <p>
+              Enjoy Exclusive First Class trips to any destination of your
+              choice
+            </p>
+          </div>
+        </div>
+        <div className="feature__div">
+          <i class="bi bi-geo-alt"></i>
+          <div>
+            <h2>Top Locations</h2>
+            <p>
+              Enjoy Exclusive First Class trips to any destination of your
+              choice
+            </p>
+          </div>
+        </div>
       </div>
-    </>
+
+      <div className="crypto__section">
+        <div className="crypto__description">
+          <p className="crypto__header">Pay In Ethereum</p>
+          <p>Accepts Cryptocurrency Payment</p>
+          {/* <ul>
+            <li>Seamless Payment</li>
+            <li>Payment in Ethereum, Matic and BNB</li>
+            <li></li>
+          </ul> */}
+        </div>
+        <div className="crypto__image">
+          <img src={crypto2} alt="" />
+        </div>
+      </div>
+      <Footer/>
+    </div>
   );
 };
 

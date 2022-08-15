@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Rentals.css";
 import { Link } from "react-router-dom";
-import logo from "../../images/airbnbRed.png";
+import aeroLogo from "../../images/aero-logo.png";
 import { ConnectButton, Icon, Button } from "web3uikit";
 import RentalsMap from "../../components/RentalsMap";
 import { useMoralis } from "react-moralis";
@@ -37,7 +37,7 @@ const Rentals = () => {
     };
 
     fetchRentals();
-  }, [destination, guests]);
+  }, [ ,destination, guests]);
   console.log(coOrdinates);
 
   return (
@@ -46,7 +46,7 @@ const Rentals = () => {
         <div className="filters">
           <div>
             <Link to={"/"}>
-              <img className="logo" src={logo} alt="logo" />
+              <img className="logo" src={aeroLogo} alt="logo" />
             </Link>
           </div>
           <Filter />
@@ -70,7 +70,7 @@ const Rentals = () => {
               // console.log(JSON.parse(x).rooms);
 
               return (
-                <div key={e.attributes.id}>
+                <div key={e.id}>
                   {" "}
                   <div
                     onClick={() => {
@@ -128,13 +128,13 @@ const Rentals = () => {
               );
             })
           ) : (
-            <div>No Location Available For {destination}</div>
+            <div className="no__location">No Location Available For {destination}</div>
           )}
         </div>
         <div className="rentalsContentR">
-          {coOrdinates && (
-            <RentalsMap location={coOrdinates} setHighlight={setHighlight} />
-          )}
+          {/* {coOrdinates && (
+            <RentalsMap location={coOrdinates} />
+          )} */}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { DatePicker, Icon, Input, Select } from "web3uikit";
+import React, { useContext} from "react";
+import {  Icon, Input, Select } from "web3uikit";
 import { Link } from "react-router-dom";
 import countries from "../../assets/countries.json";
 import "./Filter.css";
@@ -13,8 +13,6 @@ const Filter = () => {
     checkOut,
     guests,
     setDestination,
-    setCheckIn,
-    setCheckOut,
     setGuests,
   } = useContext(TransactionContext);
 
@@ -38,8 +36,8 @@ const Filter = () => {
           })}
         />
       </div>
-      {/* <div className="vl" /> */}
-      <div className="inputs">
+
+      {/* <div className="inputs">
         Check In
         <DatePicker
           id="CheckIn"
@@ -48,9 +46,9 @@ const Filter = () => {
             setCheckIn(event.date.toISOString().substring(0, 10))
           }
         />
-      </div>
-      {/* <div className="vl" /> */}
-      <div className="inputs">
+      </div> */}
+
+      {/* <div className="inputs">
         Check Out{" "}
         <DatePicker
           id="CheckOut"
@@ -59,10 +57,10 @@ const Filter = () => {
             setCheckOut(event.date.toISOString().substring(0, 10))
           }
         />
-      </div>
-      {/* <div className="vl" /> */}
+      </div> */}
+
       <div className="inputs">
-        Guests{" "}
+       Number Of Tourists{" "}
         <Input
           value={guests}
           width="auto"

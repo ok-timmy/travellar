@@ -19,7 +19,7 @@ const SingleRental = () => {
   const dispatch = useNotification();
   const { Moralis, account } = useMoralis();
   const contractProcessor = useWeb3ExecuteFunction();
-  const { destination, checkIn, checkOut, guests, setCheckOut, setCheckIn } =
+  const {  checkIn, checkOut, guests, setCheckOut, setCheckIn } =
     useContext(TransactionContext);
   const { state: values } = useLocation();
   // console.log(values);
