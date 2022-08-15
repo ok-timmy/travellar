@@ -9,7 +9,7 @@ function User({account}) {
 
    useEffect(() => {
     const fetchUserRentals = async() => {
-      const Rentals = Moralis.Object.extend("NewBookings");
+      const Rentals = Moralis.Object.extend("BookedDates");
       const query = new Moralis.Query(Rentals);
       // console.log(query);
       query.equalTo("booker", account);
@@ -21,7 +21,7 @@ function User({account}) {
 
     fetchUserRentals();
    }, [isVisible])
-   
+   console.log(userRentals);
 
   return (
     <>
@@ -39,7 +39,7 @@ function User({account}) {
           {
             userRentals &&
               userRentals.map((e)=> {
-                return  <div key={e.attributes.uid} style={{width: "200px"}}>
+                return  <div key={e.id} style={{width: "200px"}}>
                   <Card
                   isDisabled
                   title={e.attributes.city}

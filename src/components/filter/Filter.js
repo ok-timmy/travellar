@@ -38,7 +38,7 @@ const Filter = () => {
           })}
         />
       </div>
-      <div className="vl" />
+      {/* <div className="vl" /> */}
       <div className="inputs">
         Check In
         <DatePicker
@@ -49,7 +49,7 @@ const Filter = () => {
           }
         />
       </div>
-      <div className="vl" />
+      {/* <div className="vl" /> */}
       <div className="inputs">
         Check Out{" "}
         <DatePicker
@@ -60,7 +60,7 @@ const Filter = () => {
           }
         />
       </div>
-      <div className="vl" />
+      {/* <div className="vl" /> */}
       <div className="inputs">
         Guests{" "}
         <Input

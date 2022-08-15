@@ -38,6 +38,7 @@ const Rentals = () => {
 
     fetchRentals();
   }, [destination, guests]);
+  console.log(coOrdinates);
 
   return (
     <div className="rentals__page">
@@ -69,7 +70,7 @@ const Rentals = () => {
               // console.log(JSON.parse(x).rooms);
 
               return (
-                <div key={e.id}>
+                <div key={e.attributes.id}>
                   {" "}
                   <div
                     onClick={() => {

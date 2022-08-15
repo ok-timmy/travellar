@@ -1,18 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./SingleRental.css";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
-import { Button, Icon, useNotification } from "web3uikit";
+import {
+  Button,
+  Card,
+  DatePicker,
+  Icon,
+  Modal,
+  useNotification,
+} from "web3uikit";
 import { TransactionContext } from "../../components/Context/ContextWrapper";
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, EffectFade } from "swiper";
+import "swiper/swiper-bundle.css";
 
 const SingleRental = () => {
   const dispatch = useNotification();
   const { Moralis, account } = useMoralis();
   const contractProcessor = useWeb3ExecuteFunction();
-  const { destination, checkIn, checkOut, guests} = useContext(TransactionContext);
+  const { destination, checkIn, checkOut, guests, setCheckOut, setCheckIn } =
+    useContext(TransactionContext);
   const { state: values } = useLocation();
-  console.log(values);
+  // console.log(values);
+  const [isVisible, setIsVisible] = useState(false);
   const {
     imgUrl,
     location,
@@ -24,13 +35,6 @@ const SingleRental = () => {
     dosDescription,
   } = values;
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    // slidesToScroll: 1
-  }
 
   const x = details[0].replaceAll("'", '"');
   console.log(details);
@@ -39,7 +43,7 @@ const SingleRental = () => {
   const handleSuccess = () => {
     dispatch({
       type: "success",
-      message: `Great! You have booked ${destination}`,
+      message: `Great! You have booked ${name}`,
       title: "Booking Successful",
       position: "topL",
     });
@@ -77,7 +81,7 @@ const SingleRental = () => {
     }
 
     let options = {
-      contractAddress: "0xD408375D3bc438752FD32b3e4f24b35D057630B1",
+      contractAddress: "0x6B7fA1B140E49D0D7cdcC8ddcA66053AbDB31615",
       functionName: "addDatesBooked",
       abi: [
         {
@@ -111,6 +115,7 @@ const SingleRental = () => {
       params: options,
       onSuccess: () => {
         handleSuccess();
+        setIsVisible(false);
       },
       onError: (error) => {
         handleError(error.error.message);
@@ -121,29 +126,25 @@ const SingleRental = () => {
   return (
     <>
       <div className="location__page">
-        <div className="search__details">
-          <div className="searchReminder">
-            <div className="each__filter">{destination}</div>
-            <div className="each__filter">{`
-          ${new Date(checkIn).toLocaleString("default", { month: "short" })}
-          ${new Date(checkIn).toLocaleString("default", { day: "2-digit" })}
-          - 
-           ${new Date(checkOut).toLocaleString("default", { month: "short" })}
-           ${new Date(checkOut).toLocaleString("default", { day: "2-digit" })}
-
-        `}</div>
-            <div className="each__filter">{guests} Guests</div>
-          </div>
-        </div>
         <div className="location__details">
           <div className="location__upper">
+            <div>
+              <button className="go__back">
+                <i class="bi bi-arrow-left"></i> Go Back
+              </button>
+            </div>
             <div className="location__Name">{name}</div>
             <div className="location__location">
-            <i className="bi bi-geo-alt"></i> {location[0]}, {location[1]}
+              <i className="bi bi-geo-alt"></i> {location[0]}, {location[1]}
             </div>
             <div className="location__unodescription">
-              <span><i className="bi bi-door-open"></i> {JSON.parse(x).rooms} Rooms</span>
-              <span> <i className="bi bi-person"></i> {JSON.parse(x).guests} Guests</span>
+              <span>
+                <i className="bi bi-door-open"></i> {JSON.parse(x).rooms} Rooms
+              </span>
+              <span>
+                {" "}
+                <i className="bi bi-person"></i> {JSON.parse(x).guests} Guests
+              </span>
             </div>
           </div>
           <div className="location__lower">
@@ -160,35 +161,105 @@ const SingleRental = () => {
             </div>
 
             <div className="book__section">
-             <div style={{display: "flex", alignSelf:"center"}}> <Icon fill="blue" size={15} svg="eth" /> {pricePerDay / 100}/ Day</div>
-              <Button
-                text="Book Here"
-                onClick={() => {
-                  if (account) {
-                    bookRental(
-                      checkIn,
-                      checkOut,
-                      uid_decimal.value.$numberDecimal,
-                      Number(pricePerDay_decimal.value.$numberDecimal)
-                    );
-                  } else {
-                    handleNoAccount();
-                  }
-                }}
-              />
+              <div style={{ display: "flex", alignSelf: "center" }}>
+                {" "}
+                <Icon fill="blue" size={15} svg="eth" /> {pricePerDay / 100}/
+                Day
+              </div>
+              <Button text="Book Now" onClick={() => setIsVisible(true)} />
+
+              <Modal
+                onCloseButtonPressed={() => setIsVisible(false)}
+                hasFooter={false}
+                title={`Confirm Reservation`}
+                isVisible={isVisible}
+                width="auto"
+              >
+                <div style={{ width: "20rem" }}>
+                  <Card isDisabled title={`Destination: ${name}`}>
+                    <div>
+                      <img
+                        src={imgUrl[0]}
+                        alt="Location"
+                        width={"180px"}
+                        height={"100px"}
+                      />
+                    </div>
+                  </Card>
+                  <div style={{ display: "flex" }}>
+                    <div className="inputs">
+                      Check In
+                      <DatePicker
+                        id="CheckIn"
+                        value={checkIn}
+                        onChange={(event) =>
+                          setCheckIn(event.date)
+                        }
+                      />
+                    </div>
+                    <div className="inputs">
+                      Check Out{" "}
+                      <DatePicker
+                        id="CheckOut"
+                        value={checkOut}
+                        onChange={(event) =>
+                          setCheckOut(event.date)
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      margin: "1rem 0",
+                    }}
+                  >
+                    <div>
+                      {guests} {`Guest${guests !== "1" && "s"}`}
+                    </div>
+                    <Button
+                      text="Confirm"
+                      onClick={() => {
+                        if (account) {
+                          bookRental(
+                            checkIn,
+                            checkOut,
+                            uid_decimal.value.$numberDecimal,
+                            Number(pricePerDay_decimal.value.$numberDecimal)
+                          );
+                        } else {
+                          handleNoAccount();
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </Modal>
             </div>
           </div>
         </div>
-        <div className="location__images">
-          {/* <img src={imgUrl} alt="" /> */}
-          <Slider
-        {...settings}
-          >
-            {imgUrl.map((image_url)=> {
-              return <img src={image_url} alt="" key={image_url}/>
+        {/* <div > */}
+        <Swiper
+          modules={[Navigation, EffectFade]}
+          navigation
+          effect={"fade"}
+          speed={1500}
+          slidesPerView={1}
+          loop
+          className="my__swiper"
+        >
+          <div className="location__images">
+            {imgUrl.map((image_url) => {
+              return (
+                <SwiperSlide key={image_url} className="swiper__slide">
+                  <img src={image_url} alt="" />
+                </SwiperSlide>
+              );
             })}
-          </Slider>
-        </div>
+          </div>
+        </Swiper>
+        {/* </div> */}
       </div>
     </>
   );

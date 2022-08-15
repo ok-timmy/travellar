@@ -7,11 +7,20 @@
 
 .rentals__filter {
     z-index: 1000;
-    width: 100%;
+    width: 100% !important;
     top: 0;
     padding: 1rem 0 2rem; 
+    display: flex;
     border-bottom: 1px black solid;
     position: sticky;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 0 1.5rem;
 }
 
 .rentalLocation {
