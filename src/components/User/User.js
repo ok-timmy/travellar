@@ -21,7 +21,7 @@ function User({account}) {
 
     fetchUserRentals();
    }, [isVisible])
-   console.log(userRentals);
+  //  console.log(userRentals);
 
   return (
     <>

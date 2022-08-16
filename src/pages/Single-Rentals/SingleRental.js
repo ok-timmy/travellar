@@ -38,7 +38,7 @@ const SingleRental = () => {
 
 
   const x = details[0].replaceAll("'", '"');
-  console.log(details);
+  // console.log(details);
 
   //Handle Success Notification
   const handleSuccess = () => {

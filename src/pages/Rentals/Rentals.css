@@ -7,7 +7,7 @@
 
 .rentals__filter {
     width: 100% !important;
-    padding: 0; 
+    padding: 0.5rem 0; 
     display: flex;
     border-bottom: 1px black solid;
     position: sticky;
@@ -118,6 +118,29 @@
     font-size: 12px;
 }
 
+.no__location {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.no__location > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.no__location > div > i {
+    font-size: 5rem;
+    color:hsl(214, 97%, 59%);
+}
+
+.no__location > div > p {
+    font-size: 2rem;
+    text-align: center;
+}
+
 @media screen and (max-width:600px) {
     .filters{
         flex-direction: column;
@@ -147,6 +170,9 @@
 .spinner__div {
     width: fit-content;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .spinner {

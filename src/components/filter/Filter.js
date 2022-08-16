@@ -9,8 +9,6 @@ const Filter = () => {
   const {
     index,
     setIndex,
-    // checkIn,
-    // checkOut,
     guests,
     setDestination,
     setGuests,
@@ -18,7 +16,7 @@ const Filter = () => {
   } = useContext(TransactionContext);
 
 
-  console.log(index);
+  // console.log(index);
 
   return (
     <div className="searchFields">
@@ -31,7 +29,7 @@ const Filter = () => {
             setDestination(data.label);
             saveToStorage("destination", data.label);
             setIndex(countries.map((country)=> country.code).indexOf(data.id));
-            console.log(index);
+            // console.log(index);
             saveToStorage("index", countries.map((country)=> country.code).indexOf(data.id));
           }}
           options={countries.map((country) => {

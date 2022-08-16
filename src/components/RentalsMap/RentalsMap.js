@@ -7,7 +7,7 @@ function RentalsMap({location}) {
     setCenter({ lat: location.lat, lng: location.lng });}
   }, [location]);
 
-  console.log(center);
+  // console.log(center);
 
   return (
     <>

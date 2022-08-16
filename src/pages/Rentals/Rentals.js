@@ -8,42 +8,43 @@ import { useMoralis } from "react-moralis";
 import User from "../../components/User/User";
 import Filter from "../../components/filter/Filter";
 import { TransactionContext } from "../../components/Context/ContextWrapper";
+import Footer from "../../components/Footer/Footer";
 
 const Rentals = () => {
   const [highlight, setHighlight] = useState();
   const { Moralis, account } = useMoralis();
-  const { destination, guests  } = useContext(TransactionContext);
+  const { destination, guests } = useContext(TransactionContext);
   const [rentalList, setRentalList] = useState();
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [coOrdinates, setCoOrdinates] = useState();
 
   useEffect(() => {
-setIsLoading(true)
+    setIsLoading(true);
     const fetchRentals = async () => {
       const Rentals = await Moralis.Object.extend("RentalTables");
       const query = new Moralis.Query(Rentals);
-      console.log(query);
+      // console.log(query);
       query.contains("location", destination);
       query.greaterThanOrEqualTo("maxGuests_decimal", Number(guests));
       const result = await query.find();
 
-      // console.log(destination);
-      console.log(result);
+      // console.log(result);
       setRentalList(result);
-      setIsLoading(false)
+      setIsLoading(false);
 
       let cords = [];
-        if (result !==[]) {result.forEach((e) => {
-        cords.push({ lat: e.attributes.lat, lng: e.attributes.long });
-      });
-      setCoOrdinates(cords);
-    }
+      if (result !== []) {
+        result.forEach((e) => {
+          cords.push({ lat: e.attributes.lat, lng: e.attributes.long });
+        });
+        setCoOrdinates(cords);
+      }
     };
 
     fetchRentals();
   }, [destination, guests]);
-  console.log("Rental List", rentalList);
-  console.log(coOrdinates);
+  // console.log("Rental List", rentalList);
+  // console.log(coOrdinates);
 
   return (
     <div className="rentals__page">
@@ -63,31 +64,34 @@ setIsLoading(true)
         </div>
       </div>
 
-
       <div className="rentalsContent">
         <div className="rentalsContentL">
           <div className="stays">Stays Available For Your Destination </div>
           {isLoading ? (
             <div className="spinner__div">
-            <svg className="spinner" viewBox="25 25 50 50">
-            <circle r="20" cy="50" cx="50"></circle>
-          </svg>
-          </div>
-          ) : (rentalList && rentalList.length === 0) ? (
+              <svg className="spinner" viewBox="25 25 50 50">
+                <circle r="20" cy="50" cx="50"></circle>
+              </svg>
+            </div>
+          ) : rentalList && rentalList.length === 0 ? (
             <div className="no__location">
-              { `No Location Available For ${destination}`}
+              <div>
+              <i className="bi bi-emoji-frown"></i>
+              <p>{`No Location Available In ${destination}`}</p>
+              </div>
             </div>
           ) : (
-            rentalList && [...rentalList].map((e, i) => {
+            rentalList &&
+            [...rentalList].map((e, i) => {
               //I made a mistake while inputting the data on the smart contract, hence I had to mak up for it with this weird line
               const x = e.attributes.details[0].replaceAll("'", '"');
 
               return (
-                <div key={e.id} style={{cursor:"pointer"}}>
+                <div key={e.id} style={{ cursor: "pointer" }}>
                   {" "}
                   <div
                     onClick={() => {
-                      console.log(e);
+                      // console.log(e);
                       setHighlight(i);
                     }}
                     className={highlight === i ? "rentalDivH" : "rentalDiv"}
@@ -145,10 +149,11 @@ setIsLoading(true)
         </div>
         <div className="rentalsContentR">
           {/* {coOrdinates && ( */}
-            <RentalsMap location={coOrdinates && coOrdinates[highlight]} />
+          <RentalsMap location={coOrdinates && coOrdinates[highlight]} />
           {/* )} */}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
