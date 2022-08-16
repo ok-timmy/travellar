@@ -3,42 +3,45 @@ import "./Rentals.css";
 import { Link } from "react-router-dom";
 import aeroLogo from "../../images/aero-logo.png";
 import { ConnectButton, Icon, Button } from "web3uikit";
-import RentalsMap from "../../components/RentalsMap";
+// import RentalsMap from "../../components/RentalsMap";
 import { useMoralis } from "react-moralis";
-import User from "../../components/User";
+import User from "../../components/User/User";
 import Filter from "../../components/filter/Filter";
 import { TransactionContext } from "../../components/Context/ContextWrapper";
 
 const Rentals = () => {
   const [highlight, setHighlight] = useState();
   const { Moralis, account } = useMoralis();
-  const { destination, guests } = useContext(TransactionContext);
-  const [rentalList, setRentalList] = useState([]);
-  const [coOrdinates, setCoOrdinates] = useState();
+  const { destination, guests  } = useContext(TransactionContext);
+  const [rentalList, setRentalList] = useState();
+  const [isLoading, setIsLoading] = useState(false)
+  // const [coOrdinates, setCoOrdinates] = useState();
 
   useEffect(() => {
+setIsLoading(true)
     const fetchRentals = async () => {
       const Rentals = await Moralis.Object.extend("RentalTables");
       const query = new Moralis.Query(Rentals);
       console.log(query);
       query.contains("location", destination);
-      query.greaterThanOrEqualTo("maxGuests_decimal", guests);
+      query.greaterThanOrEqualTo("maxGuests_decimal", Number(guests));
       const result = await query.find();
 
       // console.log(destination);
       console.log(result);
-
-      let cords = [];
-      result.forEach((e) => {
-        cords.push({ lat: e.attributes.lat, lng: e.attributes.long });
-      });
-      setCoOrdinates(cords);
       setRentalList(result);
+      setIsLoading(false)
+
+      // let cords = [];
+      // result.forEach((e) => {
+      //   cords.push({ lat: e.attributes.lat, lng: e.attributes.long });
+      // });
+      // setCoOrdinates(cords);
     };
 
     fetchRentals();
-  }, [ ,destination, guests]);
-  console.log(coOrdinates);
+  }, [destination, guests]);
+  console.log("Rental List", rentalList);
 
   return (
     <div className="rentals__page">
@@ -63,8 +66,16 @@ const Rentals = () => {
       <div className="rentalsContent">
         <div className="rentalsContentL">
           <div className="stays">Stays Available For Your Destination </div>
-          {rentalList !== [] ? (
-            rentalList.map((e, i) => {
+          {isLoading ? (
+            <svg className="spinner" viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>
+          ) : rentalList === [] ? (
+            <div className="no__location">
+              { `No Location Available For ${destination}`}
+            </div>
+          ) : (
+            rentalList && [...rentalList].map((e, i) => {
               //I made a mistake while inputting the data on the smart contract, hence I had to mak up for it with this weird line
               const x = e.attributes.details[0].replaceAll("'", '"');
               // console.log(JSON.parse(x).rooms);
@@ -75,6 +86,7 @@ const Rentals = () => {
                   <div
                     onClick={() => {
                       console.log(e);
+                      setHighlight(i);
                     }}
                     className={highlight === i ? "rentalDivH" : "rentalDiv"}
                   >
@@ -127,8 +139,6 @@ const Rentals = () => {
                 </div>
               );
             })
-          ) : (
-            <div className="no__location">No Location Available For {destination}</div>
           )}
         </div>
         <div className="rentalsContentR">

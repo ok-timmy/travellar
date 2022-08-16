@@ -11,9 +11,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade } from "swiper";
 import "swiper/swiper-bundle.css";
 import Footer from "../../components/Footer/Footer";
+import User from "../../components/User/User";
+import { useMoralis } from "react-moralis";
 
 const Home = () => {
-  // console.log(countries);
+  const { account } = useMoralis();
 
   return (
     <div className="home__page">
@@ -23,6 +25,7 @@ const Home = () => {
         </div>
 
         <div className="lrContainers">
+        {account && <User account={account} />}
           <ConnectButton />
         </div>
       </div>

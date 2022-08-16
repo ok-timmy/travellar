@@ -6,10 +6,8 @@
 }
 
 .rentals__filter {
-    z-index: 1000;
     width: 100% !important;
-    top: 0;
-    padding: 1rem 0 2rem; 
+    padding: 0; 
     display: flex;
     border-bottom: 1px black solid;
     position: sticky;
@@ -21,6 +19,15 @@
     width: 100%;
     align-items: center;
     padding: 0 1.5rem;
+}
+.logo {
+    width: auto;
+    height: 6rem;
+}
+
+.lrContainers {
+    display: flex;
+    align-items: center;
 }
 
 .rentalLocation {
@@ -50,16 +57,19 @@
 
 .rentalDiv {
     padding: 1rem 0;
-    display: flex;
-    justify-content: space-around;
-    cursor: pointer;
+    display: grid;
+    grid-template-columns: 2.4fr 1.8fr;
+    column-gap: 1rem;
 }
 
 .rentalDivH {
     animation: mymove 3s;
     border-radius: 20px;
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 2.4fr 1.8fr;
+    column-gap: 1rem;
+    padding-left:  1rem;
+    padding-top: 1rem;
 }
 
 
@@ -68,10 +78,14 @@
     to {background-color: #dddddd00;}
   }
 .rentalImg {
-    height:200px;
-    width:300px;
+    height:12.5rem;
+    width:100%;
     border-radius:20px;
-    margin-right:20px; 
+}
+
+.rentalImg> img {
+    width: 100%;
+    height: 100%;
 }
 
 .rentalInfo {
@@ -89,7 +103,7 @@
 }
 
 .bottomButton {
-    margin-top:50px;
+    margin-top: 1rem;
     justify-content: space-between;
     display: flex;
     width:100%;
@@ -110,10 +124,13 @@
         justify-content: space-between;
         align-items: flex-start;
     }
-    .logo {
-        width: 100%;
-        height: 3rem;
-        justify-self: flex-start;
+    .rentalDiv {
+        grid-template-columns: 1fr;
+    }
+    
+    .rentalDivH {
+        grid-template-columns: 1fr;
+
     }
 }
 
@@ -123,3 +140,45 @@
     }
     
 }
+
+
+
+/* From uiverse.io by @barisdogansutcu */
+.spinner {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+   }
+   
+   .spinner>circle {
+    fill: none;
+    stroke: hsl(214, 97%, 59%);
+    stroke-width: 2;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+   }
+   
+   @keyframes rotate4 {
+    100% {
+     transform: rotate(360deg);
+    }
+   }
+   
+   @keyframes dash4 {
+    0% {
+     stroke-dasharray: 1, 200;
+     stroke-dashoffset: 0;
+    }
+   
+    50% {
+     stroke-dasharray: 90, 200;
+     stroke-dashoffset: -35px;
+    }
+   
+    100% {
+     stroke-dashoffset: -125px;
+    }
+   }
+   

@@ -1,7 +1,7 @@
 .footer {
     text-align: center;
-    color: white;
-    background-color: #3C7CF8;
-    padding: 0.5rem 0;
-    font-size: 1.3rem;
+    color: rgb(32, 32, 32);
+    background-color: #F2F6FF;
+    padding: 0.25rem 0;
+    font-size: 1.15rem;
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import "./SingleRental.css";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import {
@@ -14,6 +14,7 @@ import { TransactionContext } from "../../components/Context/ContextWrapper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade } from "swiper";
 import "swiper/swiper-bundle.css";
+import Footer from "../../components/Footer/Footer";
 
 const SingleRental = () => {
   const dispatch = useNotification();
@@ -22,7 +23,7 @@ const SingleRental = () => {
   const {  checkIn, checkOut, guests, setCheckOut, setCheckIn } =
     useContext(TransactionContext);
   const { state: values } = useLocation();
-  // console.log(values);
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const {
     imgUrl,
@@ -129,8 +130,8 @@ const SingleRental = () => {
         <div className="location__details">
           <div className="location__upper">
             <div>
-              <button className="go__back">
-                <i class="bi bi-arrow-left"></i> Go Back
+              <button className="go__back" onClick={()=>navigate("/rentals", {replace: true})}>
+                <i className="bi bi-arrow-left"></i> Go Back
               </button>
             </div>
             <div className="location__Name">{name}</div>
@@ -239,7 +240,6 @@ const SingleRental = () => {
             </div>
           </div>
         </div>
-        {/* <div > */}
         <Swiper
           modules={[Navigation, EffectFade]}
           navigation
@@ -259,8 +259,8 @@ const SingleRental = () => {
             })}
           </div>
         </Swiper>
-        {/* </div> */}
       </div>
+        <Footer/>
     </>
   );
 };

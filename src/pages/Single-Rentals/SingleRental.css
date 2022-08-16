@@ -87,8 +87,14 @@
 }
 
 .go__back:hover> i{
-    font-size: 1.25rem;
+    width: 5rem;
     transition: ease-in 0.2s;
     padding-right: 0.25rem;
+    padding-left: 0.5rem;
 }
 
+@media screen and (max-width:600px) {
+    .location__page {
+        grid-template-columns: 1fr;
+    }
+}

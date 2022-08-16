@@ -3,11 +3,29 @@ import React, { useState } from "react";
 export const TransactionContext = React.createContext();
 
 export const FilterProvider = ({ children }) => {
-  const [checkIn, setCheckIn] = useState(new Date().toISOString().substring(0, 10));
-  const [checkOut, setCheckOut] = useState(new Date().toISOString().substring(0, 10));
-  const [destination, setDestination] = useState("");
-  const [guests, setGuests] = useState();
-  const [index, setIndex] = useState(0);
+  const saveToStorage = (key, value) => {
+    localStorage.setItem(`${key}`, value);
+  };
+
+  const getFromStorage = (key) => {
+   const value = localStorage.getItem(`${key}`);
+   if (value) {
+    return value;
+   } else return "";
+ 
+  };
+
+
+  const [checkIn, setCheckIn] = useState(
+    new Date().toISOString().substring(0, 10)
+  );
+  const [checkOut, setCheckOut] = useState(
+    new Date().toISOString().substring(0, 10)
+  );
+  const [destination, setDestination] = useState(getFromStorage("destination"));
+  const [guests, setGuests] = useState(getFromStorage("guests"));
+  const [index, setIndex] = useState(Number(getFromStorage("index")));
+
 
   return (
     <TransactionContext.Provider
@@ -20,7 +38,10 @@ export const FilterProvider = ({ children }) => {
         setDestination,
         guests,
         setGuests,
-        index, setIndex
+        index,
+        setIndex,
+        saveToStorage,
+        getFromStorage,
       }}
     >
       {children}

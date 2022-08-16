@@ -25,14 +25,14 @@ function User({account}) {
 
   return (
     <>
-      <div onClick={()=> {setIsVisible(true)}}>
+      <div onClick={()=> {setIsVisible(true)}} style={{cursor:"pointer"}}>
         <Icon svg="user" size={24} fill="#000" />
       </div>
 
       <Modal
       onCloseButtonPressed={()=> setIsVisible(false)}
       hasFooter={false}
-      title="Your Stays"
+      title="Your Confirmed Bookings"
       isVisible={isVisible}
       >
         <div style={{display: "flex", justifyContent: "flex-start", flexWrap: "wrap", gap:"10px"}}>
@@ -46,7 +46,7 @@ function User({account}) {
                   description={`${e.attributes.datesBooked[0]} for ${e.attributes.datesBooked.length} Days`}
                   >
                     <div>
-                      <img src={e.attributes.imgUrl} alt="Location" width={"180px"}/>
+                      <img src={e.attributes.imgUrl[1]} alt="Location" width={"180px"}/>
                     </div>
 
                   </Card>

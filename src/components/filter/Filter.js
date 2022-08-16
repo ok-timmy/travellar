@@ -1,5 +1,5 @@
-import React, { useContext} from "react";
-import {  Icon, Input, Select } from "web3uikit";
+import React, { useContext } from "react";
+import { Icon, Input, Select } from "web3uikit";
 import { Link } from "react-router-dom";
 import countries from "../../assets/countries.json";
 import "./Filter.css";
@@ -9,24 +9,30 @@ const Filter = () => {
   const {
     index,
     setIndex,
-    checkIn,
-    checkOut,
+    // checkIn,
+    // checkOut,
     guests,
     setDestination,
     setGuests,
+    saveToStorage,
   } = useContext(TransactionContext);
 
-  console.log(checkIn, checkOut);
+
+  console.log(index);
 
   return (
     <div className="searchFields">
       <div className="inputs">
         Location
         <Select
+        width="100%"
           defaultOptionIndex={index}
           onChange={(data) => {
             setDestination(data.label);
-            setIndex(countries.indexOf({ name: data.label, code: data.id }));
+            saveToStorage("destination", data.label);
+            setIndex(countries.map((country)=> country.code).indexOf(data.id));
+            console.log(index);
+            saveToStorage("index", countries.map((country)=> country.code).indexOf(data.id));
           }}
           options={countries.map((country) => {
             return {
@@ -60,13 +66,16 @@ const Filter = () => {
       </div> */}
 
       <div className="inputs">
-       Number Of Tourists{" "}
+        Number Of Tourists{" "}
         <Input
           value={guests}
           width="auto"
           name="AddGuests"
           type="number"
-          onChange={(event) => setGuests(Number(event.target.value))}
+          onChange={(event) => {
+            setGuests(Number(event.target.value));
+            saveToStorage("guests", Number(event.target.value));
+          }}
         />
       </div>
       <Link
