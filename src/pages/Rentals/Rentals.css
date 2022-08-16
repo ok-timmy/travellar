@@ -144,6 +144,11 @@
 
 
 /* From uiverse.io by @barisdogansutcu */
+.spinner__div {
+    width: fit-content;
+    margin: auto;
+}
+
 .spinner {
     width: 3.25em;
     transform-origin: center;

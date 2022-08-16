@@ -164,7 +164,7 @@ const SingleRental = () => {
             <div className="book__section">
               <div style={{ display: "flex", alignSelf: "center" }}>
                 {" "}
-                <Icon fill="blue" size={15} svg="eth" /> {pricePerDay / 100}/
+                <Icon fill="blue" size={15} svg="eth" /> {pricePerDay}/
                 Day
               </div>
               <Button text="Book Now" onClick={() => setIsVisible(true)} />

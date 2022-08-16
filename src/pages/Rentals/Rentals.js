@@ -3,7 +3,7 @@ import "./Rentals.css";
 import { Link } from "react-router-dom";
 import aeroLogo from "../../images/aero-logo.png";
 import { ConnectButton, Icon, Button } from "web3uikit";
-// import RentalsMap from "../../components/RentalsMap";
+import RentalsMap from "../../components/RentalsMap/RentalsMap";
 import { useMoralis } from "react-moralis";
 import User from "../../components/User/User";
 import Filter from "../../components/filter/Filter";
@@ -15,7 +15,7 @@ const Rentals = () => {
   const { destination, guests  } = useContext(TransactionContext);
   const [rentalList, setRentalList] = useState();
   const [isLoading, setIsLoading] = useState(false)
-  // const [coOrdinates, setCoOrdinates] = useState();
+  const [coOrdinates, setCoOrdinates] = useState();
 
   useEffect(() => {
 setIsLoading(true)
@@ -32,16 +32,18 @@ setIsLoading(true)
       setRentalList(result);
       setIsLoading(false)
 
-      // let cords = [];
-      // result.forEach((e) => {
-      //   cords.push({ lat: e.attributes.lat, lng: e.attributes.long });
-      // });
-      // setCoOrdinates(cords);
+      let cords = [];
+        if (result !==[]) {result.forEach((e) => {
+        cords.push({ lat: e.attributes.lat, lng: e.attributes.long });
+      });
+      setCoOrdinates(cords);
+    }
     };
 
     fetchRentals();
   }, [destination, guests]);
   console.log("Rental List", rentalList);
+  console.log(coOrdinates);
 
   return (
     <div className="rentals__page">
@@ -61,16 +63,17 @@ setIsLoading(true)
         </div>
       </div>
 
-      {/* <hr className="line" /> */}
 
       <div className="rentalsContent">
         <div className="rentalsContentL">
           <div className="stays">Stays Available For Your Destination </div>
           {isLoading ? (
+            <div className="spinner__div">
             <svg className="spinner" viewBox="25 25 50 50">
             <circle r="20" cy="50" cx="50"></circle>
           </svg>
-          ) : rentalList === [] ? (
+          </div>
+          ) : (rentalList && rentalList.length === 0) ? (
             <div className="no__location">
               { `No Location Available For ${destination}`}
             </div>
@@ -78,10 +81,9 @@ setIsLoading(true)
             rentalList && [...rentalList].map((e, i) => {
               //I made a mistake while inputting the data on the smart contract, hence I had to mak up for it with this weird line
               const x = e.attributes.details[0].replaceAll("'", '"');
-              // console.log(JSON.parse(x).rooms);
 
               return (
-                <div key={e.id}>
+                <div key={e.id} style={{cursor:"pointer"}}>
                   {" "}
                   <div
                     onClick={() => {
@@ -92,7 +94,7 @@ setIsLoading(true)
                   >
                     <img
                       className="rentalImg"
-                      src={e.attributes.imgUrl}
+                      src={e.attributes.imgUrl[1]}
                       alt="rentalPhoto"
                     />
                     <div className="rentalInfo">
@@ -131,7 +133,7 @@ setIsLoading(true)
                         </Link>
                         <div style={{ display: "flex" }}>
                           <Icon fill="#000" size={15} svg="eth" />{" "}
-                          {e.attributes.pricePerDay / 100}/ Day
+                          {e.attributes.pricePerDay}/ Day
                         </div>
                       </div>
                     </div>
@@ -142,9 +144,9 @@ setIsLoading(true)
           )}
         </div>
         <div className="rentalsContentR">
-          {/* {coOrdinates && (
-            <RentalsMap location={coOrdinates} />
-          )} */}
+          {/* {coOrdinates && ( */}
+            <RentalsMap location={coOrdinates && coOrdinates[highlight]} />
+          {/* )} */}
         </div>
       </div>
     </div>

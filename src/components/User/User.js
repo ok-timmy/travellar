@@ -46,7 +46,7 @@ function User({account}) {
                   description={`${e.attributes.datesBooked[0]} for ${e.attributes.datesBooked.length} Days`}
                   >
                     <div>
-                      <img src={e.attributes.imgUrl[1]} alt="Location" width={"180px"}/>
+                      <img src={e.attributes.imgUrl[2]} alt="Location" width={"180px"}/>
                     </div>
 
                   </Card>
