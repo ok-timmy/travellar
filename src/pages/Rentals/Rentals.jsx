@@ -23,7 +23,7 @@ const Rentals = () => {
     const fetchRentals = async () => {
       const Rentals = await Moralis.Object.extend("RentalTables");
       const query = new Moralis.Query(Rentals);
-      // console.log(query);
+      console.log(query);
       query.contains("location", destination);
       query.greaterThanOrEqualTo("maxGuests_decimal", Number(guests));
       const result = await query.find();
@@ -43,7 +43,7 @@ const Rentals = () => {
 
     fetchRentals();
   }, [destination, guests]);
-  // console.log("Rental List", rentalList);
+  console.log("Rental List", rentalList);
   // console.log(coOrdinates);
 
   return (
@@ -73,7 +73,7 @@ const Rentals = () => {
                 <circle r="20" cy="50" cx="50"></circle>
               </svg>
             </div>
-          ) : rentalList && rentalList.length === 0 ? (
+          ) : (rentalList && rentalList.length === 0) ? (
             <div className="no__location">
               <div>
               <i className="bi bi-emoji-frown"></i>

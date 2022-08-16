@@ -60,7 +60,7 @@ const Home = () => {
 
       <div className="features__div">
         <div className="feature__div">
-          <i class="bi bi-airplane"></i>
+          <i className="bi bi-airplane"></i>
           <div>
             <h2>Exclusive Trips</h2>
             <p>
@@ -70,7 +70,7 @@ const Home = () => {
           </div>
         </div>
         <div className="feature__div">
-          <i class="bi bi-clock"></i>
+          <i className="bi bi-clock"></i>
           <div>
             <h2>Fast Bookings</h2>
             <p>
@@ -80,7 +80,7 @@ const Home = () => {
           </div>
         </div>
         <div className="feature__div">
-          <i class="bi bi-geo-alt"></i>
+          <i className="bi bi-geo-alt"></i>
           <div>
             <h2>Top Locations</h2>
             <p>
